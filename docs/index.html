@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>OrganicHAR: Activity Discovery in Organic Settings for Privacy-Preserving Sensors</title>
+<meta name="description" content="OrganicHAR is a sensor-first activity discovery framework. Privacy-preserving sensors identify key moments, a vision language model is queried only at those moments, and discrete activity labels are discovered at granularities the sensors can reliably detect. ACM IMWUT 2025." />
+<meta name="author" content="Prasoon Patidar, Riku Arakawa, Ricardo Graça, Rúben Moutinho, Adriano Soares, Ana Vasconcelos, Filippo Talami, Joana Couto da Silva, Inês Silva, Cristina Mendes Santos, Mayank Goel, Yuvraj Agarwal" />
+
+<!-- Open Graph / Twitter -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="OrganicHAR: Activity Discovery in Organic Settings for Privacy-Preserving Sensors" />
+<meta property="og:description" content="A sensor-first activity discovery framework. Privacy-preserving sensors identify key moments, a VLM is queried only then, and activity labels are discovered at granularities the sensors can detect. 90% fewer VLM queries. ACM IMWUT 2025." />
+<meta property="og:url" content="https://prasoonpatidar.github.io/research/organichar/" />
+<meta property="og:image" content="static/images/og_preview.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="OrganicHAR: Activity Discovery in Organic Settings for Privacy-Preserving Sensors" />
+<meta name="twitter:description" content="Sensor-first activity discovery. Privacy-preserving sensors trigger a VLM only at key moments, discovering activity labels at granularities the sensors can detect. ACM IMWUT 2025." />
+<meta name="twitter:image" content="static/images/og_preview.jpg" />
+
+<link rel="icon" href="static/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" href="static/images/favicon.png" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="static/css/style.css" />
+
+<!-- Scholarly metadata for Google Scholar -->
+<meta name="citation_title" content="OrganicHAR: Towards Activity Discovery in Organic Settings for Privacy Preserving Sensors Using Efficient Video Analysis" />
+<meta name="citation_author" content="Patidar, Prasoon" />
+<meta name="citation_author" content="Arakawa, Riku" />
+<meta name="citation_author" content="Graça, Ricardo" />
+<meta name="citation_author" content="Moutinho, Rúben" />
+<meta name="citation_author" content="Soares, Adriano" />
+<meta name="citation_author" content="Vasconcelos, Ana" />
+<meta name="citation_author" content="Talami, Filippo" />
+<meta name="citation_author" content="Couto da Silva, Joana" />
+<meta name="citation_author" content="Silva, Inês" />
+<meta name="citation_author" content="Mendes Santos, Cristina" />
+<meta name="citation_author" content="Goel, Mayank" />
+<meta name="citation_author" content="Agarwal, Yuvraj" />
+<meta name="citation_publication_date" content="2025" />
+<meta name="citation_journal_title" content="Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies (IMWUT)" />
+<meta name="citation_volume" content="9" />
+<meta name="citation_issue" content="4" />
+<meta name="citation_doi" content="10.1145/3770674" />
+<meta name="citation_pdf_url" content="https://doi.org/10.1145/3770674" />
+
+<!-- JSON-LD ScholarlyArticle -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "OrganicHAR: Towards Activity Discovery in Organic Settings for Privacy Preserving Sensors Using Efficient Video Analysis",
+  "author": [
+    {"@type": "Person", "name": "Prasoon Patidar", "url": "http://prasoonpatidar.com/"},
+    {"@type": "Person", "name": "Riku Arakawa"},
+    {"@type": "Person", "name": "Ricardo Graça"},
+    {"@type": "Person", "name": "Rúben Moutinho"},
+    {"@type": "Person", "name": "Adriano Soares"},
+    {"@type": "Person", "name": "Ana Vasconcelos"},
+    {"@type": "Person", "name": "Filippo Talami"},
+    {"@type": "Person", "name": "Joana Couto da Silva"},
+    {"@type": "Person", "name": "Inês Silva"},
+    {"@type": "Person", "name": "Cristina Mendes Santos"},
+    {"@type": "Person", "name": "Mayank Goel", "url": "http://www.mayankgoel.com/"},
+    {"@type": "Person", "name": "Yuvraj Agarwal", "url": "https://www.synergylabs.org/yuvraj/"}
+  ],
+  "datePublished": "2025-12",
+  "publisher": {"@type": "Organization", "name": "Association for Computing Machinery"},
+  "isPartOf": {"@type": "Periodical", "name": "Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies"},
+  "sameAs": "https://doi.org/10.1145/3770674",
+  "identifier": {"@type": "PropertyValue", "propertyID": "DOI", "value": "10.1145/3770674"},
+  "keywords": ["activity recognition", "ambient intelligence", "interactive agents", "privacy first design"],
+  "image": "https://prasoonpatidar.github.io/research/organichar/static/images/og_preview.jpg"
+}
+</script>
+</head>
+
+<body>
+
+<!-- ============================ NAV ============================ -->
+<nav class="nav">
+  <div class="wrap">
+    <span class="brand">OrganicHAR<span class="dot">.</span></span>
+    <div class="links">
+      <a href="#abstract">Abstract</a>
+      <a href="#method">Method</a>
+      <a href="#results">Results</a>
+      <a href="#reproduce">Reproduce</a>
+      <a href="#cite">Cite</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================ HERO ============================ -->
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Sensors first &nbsp;&rarr;&nbsp; activity discovery</span>
+    <h1>Activity Discovery in Organic Settings for Privacy-Preserving Sensors</h1>
+    <p class="subtitle">OrganicHAR places sensor capabilities at the center of activity discovery. Privacy-preserving sensors identify naturally occurring key moments, a vision language model is queried only at those moments, and discrete activity labels are discovered at granularities the sensors can reliably detect.</p>
+
+    <p class="authors">
+      <a href="http://prasoonpatidar.com/" target="_blank" rel="noopener">Prasoon Patidar</a> &nbsp;·&nbsp;
+      Riku Arakawa &nbsp;·&nbsp;
+      Ricardo Graça &nbsp;·&nbsp;
+      Rúben Moutinho &nbsp;·&nbsp;
+      Adriano Soares &nbsp;·&nbsp;
+      Ana Vasconcelos &nbsp;·&nbsp;
+      Filippo Talami &nbsp;·&nbsp;
+      Joana Couto da Silva &nbsp;·&nbsp;
+      Inês Silva &nbsp;·&nbsp;
+      Cristina Mendes Santos &nbsp;·&nbsp;
+      <a href="http://www.mayankgoel.com/" target="_blank" rel="noopener">Mayank Goel</a> &nbsp;·&nbsp;
+      <a href="https://www.synergylabs.org/yuvraj/" target="_blank" rel="noopener">Yuvraj Agarwal</a>
+    </p>
+    <p class="affil">Carnegie Mellon University &nbsp;·&nbsp; Fraunhofer Portugal AICOS</p>
+    <p class="venue">Proc. ACM IMWUT 2025 &nbsp;·&nbsp; <strong>Vol. 9, No. 4, Article 203</strong> &nbsp;·&nbsp; UbiComp 2025</p>
+
+    <!-- Links bar -->
+    <div class="links-bar">
+      <a class="btn" href="https://doi.org/10.1145/3770674" target="_blank" rel="noopener" aria-label="Paper">
+        <svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15a0 0 0 0 1 0 0H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm8 1.5V8h4.5L14 3.5zM8 13h8v1.5H8V13zm0 3h8v1.5H8V16z"/></svg>
+        Paper
+      </a>
+      <a class="btn" href="https://github.com/synergylabs/OrganicHAR" target="_blank" rel="noopener" aria-label="Code">
+        <svg viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+        Code
+      </a>
+      <a class="btn soft" href="static/OrganicHAR_slides.pdf" target="_blank" rel="noopener" aria-label="Slides">
+        <svg viewBox="0 0 24 24"><path d="M4 3h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1h-6.6l3 3.3-1.1 1L11 17l-4.3 4.6-1.1-1 3-3.3H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm1 2v9h14V5H5z"/></svg>
+        Slides
+      </a>
+      <a class="btn soft" href="https://doi.org/10.1145/3770674" target="_blank" rel="noopener" aria-label="DOI">
+        <svg viewBox="0 0 24 24"><path d="M3.9 12a3.1 3.1 0 0 1 3.1-3.1h3v2h-3a1.1 1.1 0 0 0 0 2.2h3v2h-3A3.1 3.1 0 0 1 3.9 12zm6.1-1h4v2h-4v-2zm4.9-3.1h-3v2h3a1.1 1.1 0 0 1 0 2.2h-3v2h3a3.1 3.1 0 0 0 0-6.2z"/></svg>
+        DOI
+      </a>
+    </div>
+
+    <figure class="teaser">
+      <img src="static/images/teaser.png" alt="OrganicHAR discovers activity labels in three steps: privacy-preserving sensors identify key moments, a VLM describes only those moments, and descriptions are converted into activity labels with adaptive granularity." width="1600" height="420" />
+      <figcaption>OrganicHAR discovers activity labels through a three-step sensor-first approach. Privacy-preserving sensors identify key moments with recurring patterns or anomalies; a vision language model generates descriptions only for those moments; and the descriptions are converted into activity labels with adaptive granularity, reducing video processing by 90%.</figcaption>
+    </figure>
+  </div>
+</header>
+
+<!-- ============================ ABSTRACT / TL;DR ============================ -->
+<section id="abstract">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>TL;DR</h2>
+      <p>Let the privacy-preserving sensors decide when to look, query a vision language model only at those moments, and discover activity labels at granularities the sensors can detect.</p>
+    </div>
+
+    <div class="prose">
+      <p class="lead">Deploying human activity recognition (HAR) at home is still rare because sensor signals vary widely across houses, people, and time, essentially requiring in-situ data collection and training. Prior approaches use cameras to generate training labels for privacy-preserving sensors, but this forces the sensors to detect predefined activities that cameras can see yet the sensors themselves cannot reliably distinguish.</p>
+      <p><strong>OrganicHAR</strong> inverts this relationship. It identifies naturally occurring signal patterns using privacy-preserving sensors, leverages Vision Language Models (VLMs) only during these key moments for scene understanding, and discovers discrete activity labels at granularities that these sensors can reliably detect. Because video is processed only at the key moments identified by local sensors, OrganicHAR reduces queries to the VLM by 90%, enabling practical and privacy-preserving activity recognition in natural settings.</p>
+    </div>
+
+    <div class="tldr-grid">
+      <div class="tldr-card">
+        <div class="num">90%</div>
+        <h3>Fewer VLM queries</h3>
+        <p>Only the key moments identified by local sensors are sent to the VLM, i.e., about 9 to 11% of the collected video.</p>
+      </div>
+      <div class="tldr-card">
+        <div class="num">77%</div>
+        <h3>Accuracy across configs</h3>
+        <p>Average accuracy across sensor configurations and granularities, ranging from 70% to 88% depending on hardware and granularity.</p>
+      </div>
+      <div class="tldr-card">
+        <div class="num">4&ndash;8</div>
+        <h3>Activities per user</h3>
+        <p>Categories discovered per user (15 across 12 users), tailored to each environment and to what the sensors can detect, with no manual annotation.</p>
+      </div>
+    </div>
+
+    <details class="prose" style="margin-top:34px;">
+      <summary style="cursor:pointer;font-family:var(--font-head);font-weight:600;color:var(--accent-dark);">Read the full abstract</summary>
+      <p style="margin-top:16px;">Deploying human activity recognition (HAR) at home is still rare because sensor signals vary wildly across houses, people, and time, essentially requiring in-situ data collection and training. Prior approaches use cameras to generate training labels for privacy-preserving sensors (LiDAR, RADAR, Thermal), but this forces sensors to detect predefined activities that cameras can see yet the sensors themselves cannot reliably distinguish. In this work, we introduce OrganicHAR, an activity discovery framework that inverts this relationship by placing sensor capabilities at the center of activity discovery. Our approach identifies naturally occurring signal patterns using privacy-preserving sensors, leverages Vision Language Models (VLMs) only during these key moments for scene understanding, and discovers discrete activity labels at granularities that these sensors can reliably detect. Our evaluation with 12 participants demonstrates OrganicHAR&rsquo;s effectiveness: it achieves 79% accuracy for coarse (4-5) activities using only basic ambient sensors (radar, lidar, thermal arrays), and 73% accuracy for fine-grained (8-9) activities when a wearable IMU, depth, and pose sensor are added. OrganicHAR maintains 77% accuracy on average across configurations while discovering 4-8 categories per user (15 across all users) tailored to each environment and sensor capabilities. By triggering video processing only at key moments identified by local sensors, we reduce queries to VLM by 90%, enabling practical and privacy-preserving activity recognition in natural settings.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ============================ METHOD ============================ -->
+<section id="method" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>How OrganicHAR works</h2>
+      <p>Featurize each sensor, let the sensors choose key moments, describe only those moments with a VLM, then discover and refine labels.</p>
+    </div>
+
+    <figure class="fig wide">
+      <img src="static/images/architecture.png" alt="OrganicHAR architecture: raw sensor signals are featurized per sensor, used to identify key moments for targeted VLM processing, converted to discrete labels by LLMs, refined by a relaxation parameter, and used to train activity recognition models." loading="lazy" width="1600" height="446" />
+      <figcaption class="figcap">Overall architecture. Raw signals from different hardware configurations are featurized per sensor and used to identify key moments for targeted video processing with VLMs. The raw descriptions are converted to discrete activity labels using LLMs and refined with a relaxation parameter &lambda;. The final labels train activity recognition models for deployment.</figcaption>
+    </figure>
+
+    <div class="prose">
+      <p><strong>1 &middot; Featurization.</strong> Each sensor modality is featurized separately over a sliding window of 5-second segments with a 0.5-second stride. This keeps the modalities complementary, so a single model is not forced to reconcile signals that the sensors capture very differently.</p>
+      <p><strong>2 &middot; Key moments identification.</strong> Two complementary modules decide which segments are worth analyzing. <em>Spatial clustering</em> applies HDBSCAN in each sensor&rsquo;s feature space to surface recurring patterns, and representative high-confidence windows from each cluster are selected. <em>Change detection</em> uses an online Gaussian Mixture Model to score anomalies and flag activity transitions. Together these select only about 9 to 11% of the collected video as key moments.</p>
+      <p><strong>3 &middot; Label discovery.</strong> A vision language model describes only the key moments, and this is the only stage that processes video, during initial training. An LLM then consolidates the varied references into consistent functional zones (e.g., sink area, counter area) and clusters the action descriptions within each zone into discrete activity labels.</p>
+      <p><strong>4 &middot; Semantic granularity control.</strong> Each label is expanded across several semantic dimensions to build a pairwise similarity matrix, and hierarchical clustering with a relaxation parameter &lambda; merges labels at a chosen granularity. Smaller &lambda; preserves finer distinctions; larger &lambda; yields coarser categories.</p>
+      <p><strong>5 &middot; Training privacy-preserving models.</strong> The discovered labels train per-modality classifiers with leave-one-session-out cross-validation, combined by late fusion. At inference the system is hierarchical: it first identifies the functional zone, then applies a zone-specific recognition model with its selected sensor ensemble. The camera is needed only during discovery, not during deployment.</p>
+    </div>
+
+    <h3 class="center" style="margin-top:44px;">The privacy-preserving sensors</h3>
+    <p class="center prose" style="margin-top:6px;">OrganicHAR is evaluated in three sensing configurations of increasing capability. A camera is used only during the initial discovery phase and is removed for deployment.</p>
+    <div class="sensors">
+      <div class="sensor"><span class="tier">Ambient (Basic)</span><h4>FMCW Doppler radar</h4><p>77 GHz mmWave (TI AWR1642BOOST-ODS) at 5 Hz; movement range and radial velocity.</p></div>
+      <div class="sensor"><span class="tier">Ambient (Basic)</span><h4>2D LiDAR</h4><p>Slamtec RPLIDAR A1M8, 360&deg; scan at 6 to 8 Hz; spatial occupancy in the sensor plane.</p></div>
+      <div class="sensor"><span class="tier">Ambient (Basic)</span><h4>Low-resolution thermal</h4><p>FLIR Lepton 3.5 downsampled to a 10x10 thermal map at 8 Hz, downsampled for privacy.</p></div>
+      <div class="sensor"><span class="tier">+ Wearable</span><h4>Smartwatch IMU</h4><p>Apple Watch accelerometer, gyroscope, and magnetometer at 50 Hz; personal motion only.</p></div>
+      <div class="sensor"><span class="tier">Ambient (Advanced)</span><h4>On-device pose</h4><p>OAK-D Lite normalized 2D pose, 25 body keypoints at 6 to 8 Hz, computed on device.</p></div>
+      <div class="sensor"><span class="tier">Ambient (Advanced)</span><h4>Low-resolution depth</h4><p>OAK-D Lite stereo-vision 10x10 depth array; closer objects appear darker.</p></div>
+    </div>
+
+    <figure class="fig" style="max-width:960px;">
+      <img src="static/images/sensor_doppler_lidar.png" alt="Doppler movement range and radial velocity, and Lidar position, across a sequence of living-room activities." loading="lazy" width="1400" height="393" />
+      <figcaption class="figcap">Movement and position information from the Doppler and LiDAR sensors across a sequence of activities. Distinct activities produce distinct signatures, which is what makes sensor-first discovery possible.</figcaption>
+    </figure>
+    <div class="grid2" style="margin-top:8px;">
+      <figure>
+        <img src="static/images/sensor_thermal_depth.png" alt="Thermal 10x10 and depth array snapshots for various kitchen activities." loading="lazy" width="1200" height="397" />
+        <figcaption class="figcap">Thermal (10x10) and depth array snapshots at a single timestamp for various kitchen activities.</figcaption>
+      </figure>
+      <figure>
+        <img src="static/images/hardware.png" alt="The OrganicHAR hardware rig with 2D LiDAR, Doppler, thermal, OAK-D Lite, and a smartwatch IMU." loading="lazy" width="900" height="964" />
+        <figcaption class="figcap">The hardware rig used to collect sensor data: 2D LiDAR, Doppler, thermal, and OAK-D Lite, with a smartwatch IMU.</figcaption>
+      </figure>
+    </div>
+
+    <h3 class="center" style="margin-top:44px;">Granularity is a dial, not a fixed taxonomy</h3>
+    <p class="center prose" style="margin-top:6px;">The relaxation parameter &lambda; controls how finely discovered labels are split. Broad categories branch into more specific activities as granularity increases, following human-intuitive hierarchies.</p>
+    <div class="tags" style="margin-top:16px;">
+      <span class="tag">Conservative &middot; &lambda; = 0.4 &middot; coarse</span>
+      <span class="tag">Balanced &middot; &lambda; = 0.3 &middot; medium</span>
+      <span class="tag">Relaxed &middot; &lambda; = 0.2 &middot; fine</span>
+    </div>
+    <figure class="fig wide" style="margin-top:22px;">
+      <img src="static/images/label_sankey.png" alt="Sankey diagram of discovered activity labels across Conservative, Balanced, and Relaxed granularity settings." loading="lazy" width="1500" height="574" />
+      <figcaption class="figcap">Discovered activity labels across the three granularity settings. Flow width is the proportion of data with each label. Broad categories such as &ldquo;Counter Activity&rdquo; differentiate into &ldquo;Food Preparation,&rdquo; &ldquo;Cleaning Counter Area,&rdquo; and others as granularity increases.</figcaption>
+    </figure>
+
+    <h3 class="center" style="margin-top:44px;">Three kitchens, twelve participants</h3>
+    <p class="center prose" style="margin-top:6px;">The controlled study covers breakfast-preparation tasks across three distinct kitchen layouts, with four participants per kitchen.</p>
+    <div class="grid3">
+      <figure><img src="static/images/kitchen1.png" alt="Kitchen 1, compact galley layout." loading="lazy" /><figcaption>Kitchen 1 &middot; compact galley</figcaption></figure>
+      <figure><img src="static/images/kitchen2.png" alt="Kitchen 2, island counter." loading="lazy" /><figcaption>Kitchen 2 &middot; island counter</figcaption></figure>
+      <figure><img src="static/images/kitchen3.png" alt="Kitchen 3, integrated appliances." loading="lazy" /><figcaption>Kitchen 3 &middot; integrated appliances</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ RESULTS ============================ -->
+<section id="results">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Results</h2>
+      <p>12 participants and 3 kitchens in the controlled study, plus a real-world deployment in 5 homes over 7 days each.</p>
+    </div>
+
+    <div class="carousel" data-carousel>
+      <div class="frame">
+        <div class="slide active">
+          <img src="static/images/video_efficiency.png" alt="Bar chart: only 9 to 11% of video requires VLM analysis across all configurations and granularities." loading="lazy" />
+          <p class="cap"><strong>Video efficiency.</strong> Across configurations OrganicHAR sends only 9 to 11% of the collected video to the VLM, compared to continuous monitoring, which is the basis of the 90% reduction.</p>
+        </div>
+        <div class="slide">
+          <img src="static/images/accuracy_advanced.png" alt="Per-participant accuracy for the Ambient (Advanced) + Wearable (IMU) configuration across three granularities." loading="lazy" />
+          <p class="cap"><strong>Accuracy per participant.</strong> Ambient (Advanced) + Wearable (IMU). Conservative reaches the high 80s, Balanced the high 70s, and Relaxed the low 70s, with dashed lines marking the average per setting.</p>
+        </div>
+        <div class="slide">
+          <img src="static/images/f1_advanced.png" alt="Per-participant F1 scores for the Ambient (Advanced) + Wearable (IMU) configuration across three granularities." loading="lazy" />
+          <p class="cap"><strong>F1 per participant.</strong> F1 drops more sharply than accuracy as granularity increases, with larger variance between participants and kitchens in the Relaxed setting.</p>
+        </div>
+        <div class="slide">
+          <img src="static/images/deployment_overall.png" alt="Real-world deployment accuracy across five homes, averaging 74.2%." loading="lazy" />
+          <p class="cap"><strong>Real-world deployment.</strong> In 5 homes (leave-one-session-out, Balanced, Ambient (Advanced) + IMU), accuracy averages 74.2%, ranging from 60% to 95% across homes.</p>
+        </div>
+        <div class="slide">
+          <img src="static/images/incremental_accuracy.png" alt="Recognition accuracy increases as more training sessions are incorporated, from 57.6% to 85.4%." loading="lazy" />
+          <p class="cap"><strong>Accuracy over time.</strong> Recognition accuracy rises from 57.6% after the first session to 85.4% after eleven sessions, with most gains arriving early.</p>
+        </div>
+        <div class="slide">
+          <img src="static/images/incremental_vlm.png" alt="VLM queries per session stay around 25 to 30 and decline to 17 to 19 in later sessions." loading="lazy" />
+          <p class="cap"><strong>VLM queries over time.</strong> Queries hold around 25 to 30 per session through the first nine sessions, then decline to 17 to 19 as the discovered label set stabilizes.</p>
+        </div>
+      </div>
+      <div class="ctrls">
+        <button class="arrow prev" aria-label="Previous">&larr;</button>
+        <div class="dots">
+          <button class="dot active" aria-label="Slide 1"></button>
+          <button class="dot" aria-label="Slide 2"></button>
+          <button class="dot" aria-label="Slide 3"></button>
+          <button class="dot" aria-label="Slide 4"></button>
+          <button class="dot" aria-label="Slide 5"></button>
+          <button class="dot" aria-label="Slide 6"></button>
+        </div>
+        <button class="arrow next" aria-label="Next">&rarr;</button>
+        <span class="counter">1 / 6</span>
+      </div>
+    </div>
+
+    <div class="grid2" style="margin-top:40px;">
+      <figure>
+        <img src="static/images/confusion_basic.png" alt="Confusion matrix for basic ambient sensors at the Balanced granularity setting." loading="lazy" width="1100" height="691" />
+        <figcaption class="figcap">Basic ambient sensors (Balanced). Most confusion arises between semantically or spatially related activities that share a similar signature in the ambient signals.</figcaption>
+      </figure>
+      <figure>
+        <img src="static/images/confusion_advanced.png" alt="Confusion matrix for the Ambient (Advanced) + Wearable (IMU) configuration at the Balanced granularity setting." loading="lazy" width="1100" height="691" />
+        <figcaption class="figcap">Ambient (Advanced) + Wearable (IMU) (Balanced). Adding pose, depth, and IMU separates several activities that the basic ambient sensors alone confuse.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ REPRODUCE ============================ -->
+<section id="reproduce" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Reproduce &amp; get started</h2>
+      <p>Five sequential stages, from raw sensor streams to evaluated activity models.</p>
+    </div>
+
+    <div class="callout">
+      <strong>VLM and LLM access.</strong> Label discovery (stage 3) queries a vision language model on the key-moment clips and an LLM for consolidation. The reference implementation uses GPT-4o; configure API keys in <code>.env</code> before running stage 3. Stages 1, 2, 4, and 5 run locally without any VLM access.
+    </div>
+
+    <div class="steps" style="margin-top:30px;">
+      <div class="step">
+        <div class="n">1</div>
+        <div class="body">
+          <h4>Stage 1 &middot; Create session data</h4>
+          <p>Process raw sensor streams and segment them into 5-second windows with a 0.5-second stride (<code>s1.create_session_data/</code>).</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="n">2</div>
+        <div class="body">
+          <h4>Stage 2 &middot; Identify key moments</h4>
+          <p>Featurize each modality, then run HDBSCAN spatial clustering and GMM change detection to select the key moments (<code>s2.create_clusters/</code>).</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="n">3</div>
+        <div class="body">
+          <h4>Stage 3 &middot; Discover labels</h4>
+          <p>Describe the key moments with a VLM, consolidate locations and actions with an LLM, and build the activity-label similarity matrix (<code>s3.generate_labels/</code>).</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="n">4</div>
+        <div class="body">
+          <h4>Stage 4 &middot; Train activity models</h4>
+          <p>Train per-sensor and late-fusion models on the discovered labels with leave-one-session-out training (<code>s4.train_activity_models/</code>).</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="n">5</div>
+        <div class="body">
+          <h4>Stage 5 &middot; Evaluate</h4>
+          <p>Map ground-truth annotations to discovered labels and compute accuracy, F1, precision, and recall (<code>s5.evaluation/</code>).</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="center" style="margin-top:38px;">Quick start: one participant, end to end</h3>
+    <div class="codewrap">
+      <button class="copy-btn" data-target="code-quickstart">Copy</button>
+      <pre><code id="code-quickstart"><span class="tok-c"># Python 3.8+ (conda recommended)</span>
+<span class="tok-k">git clone</span> <span class="tok-p">https://github.com/synergylabs/OrganicHAR.git</span>
+<span class="tok-k">cd</span> OrganicHAR
+<span class="tok-k">cp</span> .env.example .env          <span class="tok-c"># set data paths and VLM/LLM API keys</span>
+
+<span class="tok-c"># 1) Sessions and 5s windows (0.5s stride)</span>
+<span class="tok-k">cd</span> s1.create_session_data
+<span class="tok-k">python</span> 3c_extract_window_data.py <span class="tok-p">--participant</span> &lt;name&gt; <span class="tok-p">--window_size</span> 5.0 <span class="tok-p">--sliding_window_length</span> 0.5
+
+<span class="tok-c"># 2) Key moments: HDBSCAN clustering + GMM change detection</span>
+<span class="tok-k">cd</span> ../s2.create_clusters
+<span class="tok-k">python</span> 4a_preprocess_x_data.py <span class="tok-p">--participant</span> &lt;name&gt;
+<span class="tok-k">python</span> 5a_cluster_data.py <span class="tok-p">--participant</span> &lt;name&gt; <span class="tok-p">--alpha</span> 0.5
+<span class="tok-k">python</span> 5b_change_detection.py <span class="tok-p">--participant</span> &lt;name&gt;
+<span class="tok-k">python</span> 5c_compile_interesting_segments.py <span class="tok-p">--participant</span> &lt;name&gt;
+
+<span class="tok-c"># 3) Discover labels with a VLM/LLM (uses API keys)</span>
+<span class="tok-k">cd</span> ../s3.generate_labels
+<span class="tok-k">python</span> 6a_generate_descriptions.py <span class="tok-p">--participant</span> &lt;name&gt;
+<span class="tok-k">python</span> 7a_generate_label_sim_matrix.py <span class="tok-p">--participant</span> &lt;name&gt; <span class="tok-p">--merging_threshold</span> 0.3
+
+<span class="tok-c"># 4) Train, then 5) evaluate</span>
+<span class="tok-k">cd</span> ../s4.train_activity_models && <span class="tok-k">python</span> 8a_train_activity_models.py <span class="tok-p">--participant</span> &lt;name&gt; <span class="tok-p">--alpha</span> 0.5
+<span class="tok-k">cd</span> ../s5.evaluation && <span class="tok-k">python</span> 9d_evaluate_predictions.py <span class="tok-p">--participant</span> &lt;name&gt; <span class="tok-p">--alpha</span> 0.5</code></pre>
+    </div>
+    <p class="figcap">The merging threshold &lambda; sets granularity: 0.4 conservative (4 to 5 coarse activities), 0.3 balanced (6 to 7), and 0.2 relaxed (8 to 9 fine-grained). See each stage&rsquo;s scripts and the repository README for the full configuration and the code-to-paper mapping.</p>
+  </div>
+</section>
+
+<!-- ============================ CITE + LICENSE ============================ -->
+<section id="cite">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Citation &amp; license</h2>
+    </div>
+
+    <div class="codewrap">
+      <button class="copy-btn" data-target="code-bibtex">Copy</button>
+      <pre><code id="code-bibtex">@article{patidar2025organichar,
+  author    = {Patidar, Prasoon and Arakawa, Riku and Gra\c{c}a, Ricardo and
+               Moutinho, R\'uben and Soares, Adriano and Vasconcelos, Ana and
+               Talami, Filippo and Couto da Silva, Joana and Silva, In\^es and
+               Mendes Santos, Cristina and Goel, Mayank and Agarwal, Yuvraj},
+  title     = {OrganicHAR: Towards Activity Discovery in Organic Settings for
+               Privacy Preserving Sensors Using Efficient Video Analysis},
+  journal   = {Proceedings of the ACM on Interactive, Mobile, Wearable
+               and Ubiquitous Technologies (IMWUT)},
+  year      = {2025},
+  volume    = {9},
+  number    = {4},
+  articleno = {203},
+  month     = {dec},
+  publisher = {Association for Computing Machinery},
+  doi       = {10.1145/3770674},
+  keywords  = {activity recognition, ambient intelligence, interactive agents}
+}</code></pre>
+    </div>
+
+    <div class="two-col" style="margin-top:8px;">
+      <div class="license-card">
+        <h3>Code</h3>
+        <p><span class="badge">BSD 3-Clause</span></p>
+        <p>The OrganicHAR source code is released under the BSD 3-Clause License. You may use, modify, and redistribute it with attribution. See <a href="https://github.com/synergylabs/OrganicHAR/blob/main/LICENSE" target="_blank" rel="noopener">LICENSE</a>.</p>
+      </div>
+      <div class="license-card">
+        <h3>Paper &amp; figures</h3>
+        <p><span class="badge">CC BY 4.0</span></p>
+        <p>Figures and text reproduced on this page are © 2025 the authors, available under CC BY 4.0. The published article is open-access via the <a href="https://doi.org/10.1145/3770674" target="_blank" rel="noopener">ACM DOI</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ACK + FOOTER ============================ -->
+<section style="padding:46px 0;">
+  <div class="wrap prose center">
+    <h2 style="font-size:1.2rem;">Acknowledgments</h2>
+    <p style="font-size:.95rem;">This work was partially supported by NSF Awards SaTC-1801472 and CSR-1526237, the Translational Fellowship from CMU&rsquo;s Center for Machine Learning and Health (CMLH), and the Presidential Fellowship from CMU&rsquo;s CyLab Security and Privacy Institute. We gratefully acknowledge the generous gift from Trane Technologies supporting smart buildings research at Carnegie Mellon University, and we thank the Longitudinal Prize for Dementia Foundation and the Lived Experience Advisory Panel for their feedback on the overall project direction.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="umbrella">ACM IMWUT 2025 (UbiComp) &middot; <a href="https://www.synergylabs.org/" target="_blank" rel="noopener">Synergy Labs</a>, Carnegie Mellon University</p>
+    <p>
+      <a href="https://doi.org/10.1145/3770674" target="_blank" rel="noopener">Paper</a> ·
+      <a href="https://github.com/synergylabs/OrganicHAR" target="_blank" rel="noopener">Code</a> ·
+      <a href="https://www.synergylabs.org/" target="_blank" rel="noopener">Synergy Labs</a>
+    </p>
+    <p class="fineprint">Page design adapted from the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank" rel="noopener">Academic Project Page Template</a> (itself based on <a href="https://github.com/nerfies/nerfies.github.io" target="_blank" rel="noopener">Nerfies</a>). Content © 2025 the authors.</p>
+  </div>
+</footer>
+
+<script src="static/js/main.js"></script>
+</body>
+</html>
