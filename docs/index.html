@@ -57,7 +57,7 @@
   "headline": "OrganicHAR: Towards Activity Discovery in Organic Settings for Privacy Preserving Sensors Using Efficient Video Analysis",
   "author": [
     {"@type": "Person", "name": "Prasoon Patidar", "url": "http://prasoonpatidar.com/"},
-    {"@type": "Person", "name": "Riku Arakawa"},
+    {"@type": "Person", "name": "Riku Arakawa", "url": "https://rikky0611.github.io/"},
     {"@type": "Person", "name": "Ricardo Graça"},
     {"@type": "Person", "name": "Rúben Moutinho"},
     {"@type": "Person", "name": "Adriano Soares"},
@@ -105,7 +105,7 @@
 
     <p class="authors">
       <a href="http://prasoonpatidar.com/" target="_blank" rel="noopener">Prasoon Patidar</a> &nbsp;·&nbsp;
-      Riku Arakawa &nbsp;·&nbsp;
+      <a href="https://rikky0611.github.io/" target="_blank" rel="noopener">Riku Arakawa</a> &nbsp;·&nbsp;
       Ricardo Graça &nbsp;·&nbsp;
       Rúben Moutinho &nbsp;·&nbsp;
       Adriano Soares &nbsp;·&nbsp;
@@ -221,16 +221,14 @@
       <img src="static/images/sensor_doppler_lidar.png" alt="Doppler movement range and radial velocity, and Lidar position, across a sequence of living-room activities." loading="lazy" width="1400" height="393" />
       <figcaption class="figcap">Movement and position information from the Doppler and LiDAR sensors across a sequence of activities. Distinct activities produce distinct signatures, which is what makes sensor-first discovery possible.</figcaption>
     </figure>
-    <div class="grid2" style="margin-top:8px;">
-      <figure>
-        <img src="static/images/sensor_thermal_depth.png" alt="Thermal 10x10 and depth array snapshots for various kitchen activities." loading="lazy" width="1200" height="397" />
-        <figcaption class="figcap">Thermal (10x10) and depth array snapshots at a single timestamp for various kitchen activities.</figcaption>
-      </figure>
-      <figure>
-        <img src="static/images/hardware.png" alt="The OrganicHAR hardware rig with 2D LiDAR, Doppler, thermal, OAK-D Lite, and a smartwatch IMU." loading="lazy" width="900" height="964" />
-        <figcaption class="figcap">The hardware rig used to collect sensor data: 2D LiDAR, Doppler, thermal, and OAK-D Lite, with a smartwatch IMU.</figcaption>
-      </figure>
-    </div>
+    <figure class="fig" style="max-width:960px; margin-top:8px;">
+      <img src="static/images/sensor_thermal_depth.png" alt="Thermal 10x10 and depth array snapshots for various kitchen activities." loading="lazy" width="1200" height="397" />
+      <figcaption class="figcap">Thermal (10x10) and depth array snapshots at a single timestamp for various kitchen activities.</figcaption>
+    </figure>
+    <figure class="fig" style="max-width:420px;">
+      <img src="static/images/hardware.png" alt="The OrganicHAR hardware rig with 2D LiDAR, Doppler, thermal, OAK-D Lite, and a smartwatch IMU." loading="lazy" width="900" height="964" />
+      <figcaption class="figcap">The hardware rig used to collect sensor data: 2D LiDAR, Doppler, thermal, and OAK-D Lite, with a smartwatch IMU.</figcaption>
+    </figure>
 
     <h3 class="center" style="margin-top:44px;">Granularity is a dial, not a fixed taxonomy</h3>
     <p class="center prose" style="margin-top:6px;">The relaxation parameter &lambda; controls how finely discovered labels are split. Broad categories branch into more specific activities as granularity increases, following human-intuitive hierarchies.</p>
